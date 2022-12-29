@@ -5,7 +5,7 @@ const RecipeCard = function({recipe}){
     console.log(recipe.ingredients);
     return( <div>
     <Card className="RecipeCard border-0 shadow">
-    <Card.Img variant="top" src={process.env.REACT_APP_API_URL + recipe.thumbnail.data.attributes.url} />
+    <Card.Img variant="top" src={recipe.thumbnail.data.attributes.url} />
     <Card.Body>
         <Row>
             <Col>
