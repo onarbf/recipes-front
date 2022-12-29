@@ -9,10 +9,10 @@ const RecipeList = function(props){
     const [isLoading,setIsLoading] = useState(true);
 
     function getRecipeListByCategory(category){
-        fetch("http://localhost:1337/api/recipes?populate=*", { 
+        fetch(process.env.REACT_APP_API_URL + "/api/recipes?populate=*", { 
             method: 'get', 
             headers: {
-                Authorization: 'Bearer 7153db8942daa31caac098539d430ff78959c9ccbbba2a04f375d9362bfa4c0ee0937cf331519c4a3202a8b13559b73a6a1e027be1c697376291d44b394d4514643585c8e642d7d0d61e17c4f9e01811bc833ae56d28355143216552e56c0611da0e393316f4faca5c281b19d824ff77f2e3b4d5c3cc4326bb670d8feae00254'
+                Authorization: 'Bearer '+ process.env.REACT_APP_API_TOKEN
               }
         })
         .then((response) => {
@@ -22,7 +22,6 @@ const RecipeList = function(props){
             return response.json();
         })  
 	    .then(({data}) => {
-            console.log(data);
             setIsLoading(false);
             setRecipes(data);
 
@@ -34,7 +33,6 @@ const RecipeList = function(props){
 
     useEffect(()=>{
         getRecipeListByCategory(category);
-        console.log('recipes:', recipes);
     },[]);
 
     return (<Row className='d-flex  '>

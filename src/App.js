@@ -10,7 +10,10 @@ import {
 } from "react-router-dom";
 
 function App() {
+  console.log(process.env.REACT_APP_API_URL)
+  console.log(process.env.REACT_APP_API_TOKEN)
   return (
+    
     <div className="App">
       <Header/>
       <Router>
@@ -19,7 +22,7 @@ function App() {
           <Route path="/recipe/:id" element={<RecipePage/>}/>
         </Routes>
       </Router>
-    </div>
+   </div>
   );
 }
 

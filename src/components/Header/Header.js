@@ -9,7 +9,7 @@ function Header() {
   return (
     <Navbar bg="default" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="/">Recetillas</Navbar.Brand>
+        <Navbar.Brand href="/">Te Recetas</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav

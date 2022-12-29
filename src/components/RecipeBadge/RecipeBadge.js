@@ -12,7 +12,7 @@ height: '160px',
 objectFit: 'cover',
 borderBottomLeftRadius: '0',
 borderBottomRightRadius: '0'
-}} src={'http://localhost:1337'+ recipe.thumbnail.data.attributes.url} />
+}} src={process.env.REACT_APP_API_URL + recipe.thumbnail.data.attributes.url} />
             <Card.Body>
                 <Card.Title>{recipe.title}</Card.Title>
                 <Card.Text style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":"3","WebkitBoxOrient":"vertical"}}>
