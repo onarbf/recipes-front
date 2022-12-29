@@ -10,7 +10,7 @@ const RecipePage = function(){
     const [isLoading,setIsLoading] = useState(true);
 
     function getRecipeById(id){
-        fetch(process.env.REACT_APP_API_URL+"/recipe/"+id+"?populate=*", { 
+        fetch(process.env.REACT_APP_API_URL+"/api/recipes/"+id+"?populate=*", { 
             method: 'get', 
             headers: {
                 Authorization: 'Bearer '+ process.env.REACT_APP_API_TOKEN
