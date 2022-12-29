@@ -1,25 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Header/Header.js';
-
-import HomePage from './pages/HomePage/HomePage.js';
-import RecipePage from './pages/RecipePage/RecipePage.js';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
-
+import { RouterProvider } from "react-router-dom";
+import router from './handlers/router.js';
 function App() {
   return (
     
     <div className="App">
       <Header/>
-      <Router>
-        <Routes>
-          <Route path="/" element={<HomePage/>}/>
-          <Route path="/recipe/:id" element={<RecipePage/>}/>
-        </Routes>
-      </Router>
+      <RouterProvider router={router} />
    </div>
   );
 }
