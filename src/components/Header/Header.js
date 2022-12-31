@@ -1,3 +1,4 @@
+import React,{ useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -5,7 +6,20 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-function Header() {
+function Header({setSearch}) {
+  const [value, setValue] = useState('');
+
+  const handleChange = (event)=>{
+    event.preventDefault();
+    setValue(event.target.value);
+  }
+
+  const handleClick = (event,val)=>{
+    event.preventDefault()
+    console.log(val)
+    setSearch(val)
+  }
+  
   return (
     <Navbar bg="default" expand="lg">
       <Container fluid>
@@ -34,8 +48,11 @@ function Header() {
               placeholder="Tortilla de patatas..."
               className="me-2"
               aria-label="Search"
+              onChange={handleChange}
             />
-            <Button variant="outline-success">Buscar</Button>
+            <Button variant="outline-success" onClick={(event)=>{
+              handleClick(event, value)
+            }}>Buscar</Button>
           </Form>
         </Navbar.Collapse>
       </Container>

@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactMarkdown from "react-markdown";
 import {Card, Container, Row, Col} from 'react-bootstrap';
+import './RecipeCard.css';
+
 const RecipeCard = function({recipe}){
-    console.log(recipe.ingredients);
     return( <div>
     <Card className="RecipeCard border-0 shadow">
     <Card.Img variant="top" src={recipe.thumbnail.data.attributes.url} />
     <Card.Body>
         <Row>
             <Col>
-            <Card.Title>
-            <h1>{recipe.title}</h1>
+            <Card.Title >
+            <h1 >{recipe.title}</h1>
             </Card.Title>
             </Col>
         </Row>
@@ -33,7 +34,7 @@ const RecipeCard = function({recipe}){
     </Card.Body>
 
     </Card>
-        <ReactMarkdown className='mt-5'>{recipe.content}</ReactMarkdown>
+        <ReactMarkdown className='mt-5 recipeCardContent'>{recipe.content}</ReactMarkdown>
     </div>)
 }
 

@@ -7,7 +7,7 @@ const RecipeList = function(props){
     const {category} = useParams();
     const [recipes,setRecipes] = useState();
     const [isLoading,setIsLoading] = useState(true);
-
+    //process.env.REACT_APP_API_URL + "/api/recipes?filters[title][$contains]=Tor&populate=*"
     function getRecipeListByCategory(category){
         fetch(process.env.REACT_APP_API_URL + "/api/recipes?populate=*", { 
             method: 'get', 
@@ -20,6 +20,7 @@ const RecipeList = function(props){
                 throw Error('Error')
             }
             return response.json();
+            
         })  
 	    .then(({data}) => {
             setIsLoading(false);
@@ -27,7 +28,6 @@ const RecipeList = function(props){
 
         }).catch((e)=>{
             setIsLoading(false);
-            console.log(e);
         })
     }
 
