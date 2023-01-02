@@ -1,15 +1,25 @@
 import React,{useState, useEffect} from 'react';
-import {useParams} from 'react-router-dom';
 import {Row} from 'react-bootstrap';
 import RecipeBadge from '../RecipeBadge/RecipeBadge.js';
 
-const RecipeList = function(props){
-    const {category} = useParams();
+const RecipeList = function({search, setSearch, category}){
+
     const [recipes,setRecipes] = useState();
     const [isLoading,setIsLoading] = useState(true);
-    //process.env.REACT_APP_API_URL + "/api/recipes?filters[title][$contains]=Tor&populate=*"
-    function getRecipeListByCategory(category){
-        fetch(process.env.REACT_APP_API_URL + "/api/recipes?populate=*", { 
+
+    //process.env.REACT_APP_API_URL + "/api/recipes?filters\[categories\][category][$contains]=clasicas"
+    
+    function getRecipeList(search, category){
+        let query;
+            if(!search && !category){
+                query = process.env.REACT_APP_API_URL + "/api/recipes?populate=*"
+            }else if(!category){
+                query = process.env.REACT_APP_API_URL + "/api/recipes?filters[title][$contains]="+ search +"&populate=*"
+            }else{
+                query = process.env.REACT_APP_API_URL + "/api/recipes?filters[categories][category][$contains]=clasicas&populate=*"
+                setSearch('');
+            }
+        fetch(query, { 
             method: 'get', 
             headers: {
                 Authorization: 'Bearer '+ process.env.REACT_APP_API_TOKEN
@@ -32,8 +42,11 @@ const RecipeList = function(props){
     }
 
     useEffect(()=>{
-        getRecipeListByCategory(category);
-    },[]);
+        if(search){
+            category = '';
+        }
+        getRecipeList(search, category);
+    },[search,category]);
 
     return (<Row className='d-flex  '>
         {recipes && recipes.map((recipe) =>

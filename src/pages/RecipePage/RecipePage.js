@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import {useParams} from 'react-router-dom';
 import {Container, Row, Col} from 'react-bootstrap';
+import { useParams } from 'react-router-dom'
 import RecipeCard from '../../components/RecipeCard/RecipeCard.js';
 import AlertCard from '../../components/AlertCard/AlertCard.js';
 
@@ -8,7 +8,7 @@ const RecipePage = function(){
     const {id} = useParams();
     const [recipe,setRecipe] = useState();
     const [isLoading,setIsLoading] = useState(true);
-
+    
     function getRecipeById(id){
         fetch(process.env.REACT_APP_API_URL+"/api/recipes/"+id+"?populate=*", { 
             method: 'get', 

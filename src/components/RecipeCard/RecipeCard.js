@@ -4,6 +4,7 @@ import {Card, Container, Row, Col} from 'react-bootstrap';
 import './RecipeCard.css';
 
 const RecipeCard = function({recipe}){
+    console.log(recipe.categories.data[0].attributes.category)
     return( <div>
     <Card className="RecipeCard border-0 shadow">
     <Card.Img variant="top" src={recipe.thumbnail.data.attributes.url} />

@@ -1,4 +1,7 @@
-import React,{ useState } from 'react';
+import React from 'react';
+import ContextData from '../../handlers/context.js';
+
+import {Link} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -6,20 +9,15 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-function Header({setSearch}) {
-  const [value, setValue] = useState('');
+function Header() {
+  const {setSearch} = React.useContext(ContextData);
 
   const handleChange = (event)=>{
+    console.log(event.target.value);
     event.preventDefault();
-    setValue(event.target.value);
+    setSearch(event.target.value);
   }
 
-  const handleClick = (event,val)=>{
-    event.preventDefault()
-    console.log(val)
-    setSearch(val)
-  }
-  
   return (
     <Navbar bg="default" expand="lg">
       <Container fluid>
@@ -34,25 +32,27 @@ function Header({setSearch}) {
             <Nav.Link href="#action1">About</Nav.Link>
             <NavDropdown title="Categorías" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action2">Deliciosas</NavDropdown.Item>
-              <NavDropdown.Item href="#action3">
-                Clásicas
+              <NavDropdown.Item href="/category/clasicas">
+                  Clásicas
               </NavDropdown.Item>
               <NavDropdown.Item href="#action4">
                 Rápidas
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <Form className="d-flex">
+          <Form onSubmit={(e)=>{e.preventDefault()}} className="d-flex">
             <Form.Control
               type="search"
               placeholder="Tortilla de patatas..."
               className="me-2"
-              aria-label="Search"
+              aria-label="title"
               onChange={handleChange}
             />
-            <Button variant="outline-success" onClick={(event)=>{
-              handleClick(event, value)
-            }}>Buscar</Button>
+             <Link to={"/search"}>
+              <Button variant="primary">
+                Buscar
+              </Button>
+            </Link>
           </Form>
         </Navbar.Collapse>
       </Container>
