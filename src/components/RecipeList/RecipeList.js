@@ -14,9 +14,9 @@ const RecipeList = function({search, setSearch, category}){
             if(!search && !category){
                 query = process.env.REACT_APP_API_URL + "/api/recipes?populate=*"
             }else if(!category){
-                query = process.env.REACT_APP_API_URL + "/api/recipes?filters[title][$contains]="+ search +"&populate=*"
+                query = process.env.REACT_APP_API_URL + "/api/recipes?filters[title][$containsi]="+ search +"&populate=*"
             }else{
-                query = process.env.REACT_APP_API_URL + "/api/recipes?filters[categories][category][$contains]=clasicas&populate=*"
+                query = process.env.REACT_APP_API_URL + "/api/recipes?filters[categories][category][$containsi]=clasicas&populate=*"
                 setSearch('');
             }
         fetch(query, { 
